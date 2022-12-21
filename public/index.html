@@ -5,47 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chatroom</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
   <body>
-    <div class="app">
-      <div class="screen join-screen active">
-        <div class="form">
-          <h2>Join Chatroom</h2>
-          <div class="form-input">
-            <label>Username</label>
-            <input type="text" id="username" />
-          </div>
-          <div class="form-input">
-            <button id="join-user">Join</button>
-          </div>
+    <div id="chatroom">
+      <div id="chat-window">
+        <div class="message">
+          <p class="username">Username</p>
+          <p>Message content</p>
+          <p class="timestamp">Timestamp</p>
         </div>
       </div>
-      <div class="screen chat-screen">
-        <div class="header">
-          <div class="logo">Chatroom</div>
-          <button id="exit-chat">Exit</button>
-        </div>
-        <div class="messages">
-          <!-- Dummy Messages -->
-          <div class="message my-message">
-            <div>
-              <div class="name">You</div>
-              <div class="text">Hi</div>
-            </div>
-          </div>
-          <div class="update">Abs is joined the conversation</div>
-          <div class="message other-message">
-            <div>
-              <div class="name">Abs</div>
-              <div class="text">Hi</div>
-            </div>
-          </div>
-        </div>
-        <div class="typebox">
-          <input type="text" id="message-input" />
-          <button id="send-message">Send</button>
-        </div>
-      </div>
+      <form id="chat-form">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Type your message here"
+        />
+        <input type="submit" value="Send" />
+      </form>
     </div>
 
     <script type="text/javascript" src="socket.io/socket.io.js"></script>
