@@ -7,8 +7,45 @@
     <title>Chatroom</title>
   </head>
   <body>
-    <div>
-      <div>Hello World :D</div>
+    <div class="app">
+      <div class="screen join-screen active">
+        <div class="form">
+          <h2>Join Chatroom</h2>
+          <div class="form-input">
+            <label>Username</label>
+            <input type="text" id="username" />
+          </div>
+          <div class="form-input">
+            <button id="join-user">Join</button>
+          </div>
+        </div>
+      </div>
+      <div class="screen chat-screen">
+        <div class="header">
+          <div class="logo">Chatroom</div>
+          <button id="exit-chat">Exit</button>
+        </div>
+        <div class="messages">
+          <!-- Dummy Messages -->
+          <div class="message my-message">
+            <div>
+              <div class="name">You</div>
+              <div class="text">Hi</div>
+            </div>
+          </div>
+          <div class="update">Abs is joined the conversation</div>
+          <div class="message other-message">
+            <div>
+              <div class="name">Abs</div>
+              <div class="text">Hi</div>
+            </div>
+          </div>
+        </div>
+        <div class="typebox">
+          <input type="text" id="message-input" />
+          <button id="send-message">Send</button>
+        </div>
+      </div>
     </div>
 
     <script type="text/javascript" src="socket.io/socket.io.js"></script>
