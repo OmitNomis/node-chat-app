@@ -20,7 +20,7 @@ if (savedUsername) {
 } else {
   usernameForm.addEventListener("submit", (event) => {
     // Prevent the default form submission behavior
-    event.preventDefault();
+    // event.preventDefault();
 
     // Save the entered username in the session storage
     sessionStorage.setItem("username", usernameInput.value);
