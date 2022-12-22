@@ -55,10 +55,10 @@ body {
 
 #chatroom.visible {
   display: flex;
-  height: 100vh;
   flex-direction: column;
   width: 100%;
   max-width: 600px;
+  height: 100vh;
 }
 
 #chat-window {
@@ -123,4 +123,11 @@ body {
   border-radius: 4px;
   background-color: #eee;
   cursor: pointer;
+}
+
+/* Set the element to 90% of the viewport height for screens with a maximum width of 1023px */
+@media (max-width: 500px) {
+  #chatroom.visible {
+    height: 90vh;
+  }
 }

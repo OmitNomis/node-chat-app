@@ -1,19 +1,9 @@
 const express = require("express");
 const http = require("http");
-const socketio = require("socket.io");
-const cors = require("cors");
-
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
-io.origins("*:*");
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
+const io = require("socket.io")(server, {
+  origins: "https://ffa-chatroom.onrender.com",
 });
 app.use(express.static("public"));
 
