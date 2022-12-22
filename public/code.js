@@ -32,6 +32,13 @@ socket.on("message", (message) => {
   const messageElement = document.createElement("div");
   messageElement.classList.add("message");
 
+  // Set the class of the message element based on the username
+  if (message.username === "User") {
+    messageElement.classList.add("message", "self");
+  } else {
+    messageElement.classList.add("message", "other");
+  }
+
   // Create the message content
   const messageContent = `
     <p class="username">${messageObj.username}</p>
