@@ -43,6 +43,12 @@
   background-color: #45a049;
 }
 
+.newUser {
+  background-color: #8a8a8a;
+  text-align: center;
+  color: rgb(255, 236, 236);
+}
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
