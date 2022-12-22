@@ -81,16 +81,24 @@ body {
 
 .message.self {
   /* Style for messages sent by the current user */
-  align-self: flex-end;
   background-color: lightblue;
   margin-left: auto;
+  text-align: right;
+  border-radius: 10px;
+}
+
+.messageWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .message.other {
   /* Style for messages sent by other users */
-  align-self: flex-start;
   background-color: lightgray;
   margin-right: auto;
+  text-align: left;
+  border-radius: 10px;
 }
 .message .timestamp {
   color: #999;

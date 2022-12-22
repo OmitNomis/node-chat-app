@@ -53,10 +53,8 @@ socket.on("message", (messageObj) => {
   const messageElement = document.createElement("div");
   messageElement.classList.add("message");
 
-  console.log(messageObj);
-
   // Set the class of the message element based on the username
-  if (messageObj.username === "User") {
+  if (messageObj.username === savedUsername) {
     messageElement.classList.add("message", "self");
   } else {
     messageElement.classList.add("message", "other");
@@ -64,9 +62,11 @@ socket.on("message", (messageObj) => {
 
   // Create the message content
   const messageContent = `
+    <div class="messageWrapper">
     <p class="username">${messageObj.username}</p>
     <p>${messageObj.content}</p>
     <p class="timestamp">${messageObj.timestamp}</p>
+    </div>
   `;
 
   // Set the message content as the inner HTML of the message element
