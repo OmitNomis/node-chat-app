@@ -9,17 +9,9 @@ io.on("connection", (socket) => {
   socket.on("username", (username) => {
     socket.on("message", (message) => {
       // Add the username to the message object
-      const currentTime = new Date().toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      });
-
-      // Add the username to the message object
       let messageObj = {
         username: username,
         content: message,
-        timestamp: currentTime,
       };
 
       // Broadcast the message to all connected clients

@@ -49,6 +49,11 @@ chatForm.addEventListener("submit", (event) => {
 socket.on("message", (messageObj) => {
   //get current time, format it and add it to the message object
 
+  const currentTime = new Date().toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
   // Create a new message element
   const messageElement = document.createElement("div");
   messageElement.classList.add("message");
@@ -65,7 +70,7 @@ socket.on("message", (messageObj) => {
     <div class="messageWrapper">
     <p class="username">${messageObj.username}</p>
     <p>${messageObj.content}</p>
-    <p class="timestamp">${messageObj.timestamp}</p>
+    <p class="timestamp">${currentTime}</p>
     </div>
   `;
 
