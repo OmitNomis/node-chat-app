@@ -23,10 +23,10 @@ if (savedUsername) {
     // event.preventDefault();
 
     // Save the entered username in the session storage
-    sessionStorage.setItem("username", usernameInput.value);
-
     // Send the entered username to the server
+    socket.emit("newUser", usernameInput.value);
     socket.emit("username", usernameInput.value);
+    sessionStorage.setItem("username", usernameInput.value);
 
     // Hide the username form
     usernameForm.style.display = "none";
@@ -43,6 +43,25 @@ chatForm.addEventListener("submit", (event) => {
   socket.emit("message", chatInput.value);
   // Clear the chat input
   chatInput.value = "";
+});
+socket.on("newUser", (username) => {
+  const messageElement = document.createElement("div");
+  messageElement.classList.add("message");
+
+  // Create the message content
+  const messageContent = `
+  <div class="newUser">
+    <p><em>${username} has joined the chat</em></p>
+  </div>
+  `;
+  // Set the message content as the inner HTML of the message element
+  messageElement.innerHTML = messageContent;
+
+  // Append the message element to the chat window
+  chatWindow.appendChild(messageElement);
+
+  // Scroll the chat window to the bottom
+  chatWindow.scrollTop = chatWindow.scrollHeight;
 });
 
 // Handle message events from the server

@@ -6,6 +6,9 @@ const io = require("socket.io")(server, { origins: "*:*" });
 app.use(express.static("public"));
 
 io.on("connection", (socket) => {
+  socket.on("newUser", (username) => {
+    io.emit("newUser", username);
+  });
   socket.on("username", (username) => {
     socket.on("message", (message) => {
       // Add the username to the message object
