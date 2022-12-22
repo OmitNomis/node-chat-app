@@ -7,19 +7,34 @@ const chatWindow = document.getElementById("chat-window");
 const usernameForm = document.getElementById("username-form");
 const usernameInput = document.getElementById("username-input");
 const chatroom = document.getElementById("chatroom");
+const savedUsername = sessionStorage.getItem("username");
 
-usernameForm.addEventListener("submit", (event) => {
-  // Prevent the default form submission behavior
-  event.preventDefault();
-
-  // Send the entered username to the server
-  socket.emit("username", usernameInput.value);
+if (savedUsername) {
+  // Hide the username form
+  usernameForm.style.display = "none";
   // Show the chatroom
   chatroom.classList.add("visible");
 
-  // Hide the chatroom
-  usernameForm.style.display = "none";
-});
+  // Set the username on the socket object
+  socket.emit("username", savedUsername);
+} else {
+  usernameForm.addEventListener("submit", (event) => {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Save the entered username in the session storage
+    sessionStorage.setItem("username", usernameInput.value);
+
+    // Send the entered username to the server
+    socket.emit("username", usernameInput.value);
+
+    // Hide the username form
+    usernameForm.style.display = "none";
+
+    // Show the chatroom
+    chatroom.classList.add("visible");
+  });
+}
 
 chatForm.addEventListener("submit", (event) => {
   // Prevent the default form submission behavior
@@ -31,26 +46,17 @@ chatForm.addEventListener("submit", (event) => {
 });
 
 // Handle message events from the server
-socket.on("message", (message) => {
+socket.on("message", (messageObj) => {
   //get current time, format it and add it to the message object
 
-  const currentTime = new Date().toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
-
-  let messageObj = {
-    username: "User",
-    content: message,
-    timestamp: currentTime,
-  };
   // Create a new message element
   const messageElement = document.createElement("div");
   messageElement.classList.add("message");
 
+  console.log(messageObj);
+
   // Set the class of the message element based on the username
-  if (message.username === "User") {
+  if (messageObj.username === "User") {
     messageElement.classList.add("message", "self");
   } else {
     messageElement.classList.add("message", "other");
