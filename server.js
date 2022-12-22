@@ -2,9 +2,7 @@ const express = require("express");
 const http = require("http");
 const app = express();
 const server = http.createServer(app);
-const io = require("socket.io")(server, {
-  origins: "https://ffa-chatroom.onrender.com",
-});
+const io = require("socket.io")(server, { origins: "*:*" });
 app.use(express.static("public"));
 
 io.on("connection", (socket) => {
