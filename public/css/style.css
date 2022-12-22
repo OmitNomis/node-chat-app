@@ -50,6 +50,10 @@ body {
 }
 
 #chatroom {
+  display: none;
+}
+
+#chatroom.visible {
   display: flex;
   height: 100vh;
   flex-direction: column;
@@ -76,13 +80,18 @@ body {
 }
 
 .message.self {
-  text-align: right;
+  /* Style for messages sent by the current user */
+  align-self: flex-end;
+  background-color: lightblue;
+  margin-left: auto;
 }
 
 .message.other {
-  text-align: left;
+  /* Style for messages sent by other users */
+  align-self: flex-start;
+  background-color: lightgray;
+  margin-right: auto;
 }
-
 .message .timestamp {
   color: #999;
   font-size: 12px;

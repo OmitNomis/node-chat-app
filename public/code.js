@@ -4,6 +4,23 @@ const chatForm = document.getElementById("chat-form");
 const chatInput = document.getElementById("chat-input");
 const chatWindow = document.getElementById("chat-window");
 
+const usernameForm = document.getElementById("username-form");
+const usernameInput = document.getElementById("username-input");
+const chatroom = document.getElementById("chatroom");
+
+usernameForm.addEventListener("submit", (event) => {
+  // Prevent the default form submission behavior
+  event.preventDefault();
+
+  // Send the entered username to the server
+  socket.emit("username", usernameInput.value);
+  // Show the chatroom
+  chatroom.classList.add("visible");
+
+  // Hide the chatroom
+  usernameForm.style.display = "none";
+});
+
 chatForm.addEventListener("submit", (event) => {
   // Prevent the default form submission behavior
   event.preventDefault();
